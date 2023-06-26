@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 # Create your models here.
@@ -14,7 +15,10 @@ class Post(models.Model):
         verbose_name = 'post'
         verbose_name_plural = 'posts'
         db_table = 'blog_posts'
-        ordering = ('-modify_dt', )
+        ordering = ('-modify_dt',)
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('blog:post_detail', args=(self.slug,))
