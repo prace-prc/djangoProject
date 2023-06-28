@@ -21,7 +21,7 @@ class ThumbnailImageFieldFile(ImageFieldFile):
         super().save(name, content, save)
 
         img = Image.open(self.path)
-        size = (self.field.thumb_witdh, self.field.thumb_height)
+        size = (self.field.thumb_width, self.field.thumb_height)
         img.thumbnail(size)
         background = Image.new('RGB', size, (255, 255, 255))
         box = (int((size[0] - img.size[0]) / 2), int((size[1] - img.size[1]) / 2))
